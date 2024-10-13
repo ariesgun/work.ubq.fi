@@ -2,6 +2,8 @@ import * as core from "@actions/core";
 import { Octokit } from "@octokit/rest";
 import simpleGit from "simple-git";
 
+# Add new line here
+
 const token = process.env.GITHUB_TOKEN;
 const [owner, repo] = process.env.GITHUB_REPOSITORY?.split("/") || [];
 const pullNumber = process.env.GITHUB_PR_NUMBER || process.env.PULL_REQUEST_NUMBER || "0";
