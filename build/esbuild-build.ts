@@ -47,11 +47,11 @@ function createEnvDefines(environmentVariables: string[], generatedAtBuild: Reco
       throw new Error(`Missing environment variable: ${name}`);
     }
   }
-  for (const key in generatedAtBuild) {
+  Object.keys(generatedAtBuild).forEach((key) => {
     if (Object.prototype.hasOwnProperty.call(generatedAtBuild, key)) {
       defines[key] = JSON.stringify(generatedAtBuild[key]);
     }
-  }
+  });
   return defines;
 }
 
