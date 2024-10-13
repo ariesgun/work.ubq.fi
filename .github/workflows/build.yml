@@ -15,8 +15,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+<<<<<<< HEAD
         # with:
         # submodules: "recursive" # Ensures submodules are checked out
+=======
+>>>>>>> template/main
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -27,9 +30,12 @@ jobs:
         run: |
           yarn
           yarn build
+<<<<<<< HEAD
         env: # Set environment variables for the build
           SUPABASE_URL: "https://wfzpewmlyiozupulbuur.supabase.co"
           SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndmenBld21seWlvenVwdWxidXVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzQzMzksImV4cCI6MjAxMTI1MDMzOX0.SKIL3Q0NOBaMehH0ekFspwgcu3afp3Dl9EDzPqs1nKs"
+=======
+>>>>>>> template/main
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
