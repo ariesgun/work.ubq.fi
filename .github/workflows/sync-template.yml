@@ -37,22 +37,22 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-          git remote add template https://github.com/ubiquity/ts-template.git
+          git remote add template https://github.com/ariesgun/ts-template.git
           git fetch template
           
           git checkout -b "$pr_branch"
           
           last_sync=$(git log --grep="Sync template" --format="%H" -n 1)
 
-          if [ -n "$last_sync" ]; then
-            # If there's a previous sync, try to cherry-pick new changes
-            git cherry-pick $last_sync..template/development -m 1 --no-commit > ~/temp.log
-
-          else
+          # if [ -n "$last_sync" ]; then
+          #   # If there's a previous sync, try to cherry-pick new changes
+          #   git cherry-pick $last_sync..template/development --no-commit > ~/temp.log
+          #   cat ~/temp.log
+          # else
             # If it's the first sync, merge the template
-            git merge template/main --allow-unrelated-histories --no-commit > ~/temp.log || true
-            cat ~/temp.log
-          fi
+          git merge template/development --allow-unrelated-histories --no-commit > ~/temp.log || true
+          cat ~/temp.log
+          # fi
 
           # Check if there are any changes
           if git diff --staged --quiet && git diff --quiet; then
@@ -65,7 +65,7 @@ jobs:
 
           # Push changes and create PR
           git push -f "$original_remote" "$pr_branch"
-          gh pr create --title "Sync branch to template (manual resolution required)" \
+          gh pr create --title "Sync template (manual resolution required)" \
             --body "This pull request merges changes from the template repository.
           There may be conflicts that require manual resolution.
           Conflicts:
