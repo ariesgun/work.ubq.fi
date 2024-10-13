@@ -8,7 +8,6 @@ node_modules
 .pnp.loader.mjs
 static/dist
 .env
-coverage
-junit.xml
+
 cypress/screenshots
 cypress/videos
