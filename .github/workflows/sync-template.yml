@@ -3,7 +3,11 @@ name: Sync branch to template
 on:
   workflow_dispatch:
   schedule:
+<<<<<<< HEAD
     - cron: "14 0 1 * *"
+=======
+    - cron: '14 0 1 * *'
+>>>>>>> template/development
 
 jobs:
   sync:
@@ -11,8 +15,17 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+<<<<<<< HEAD
       actions: write
     steps:
+=======
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+>>>>>>> template/development
       - name: Get GitHub App token
         uses: tibdex/github-app-token@v1.7.0
         id: get_installation_token
@@ -20,12 +33,15 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
+<<<<<<< HEAD
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ steps.get_installation_token.outputs.token }}
           
+=======
+>>>>>>> template/development
       - name: Sync branch to template
         env:
           GH_TOKEN: ${{ steps.get_installation_token.outputs.token }}
@@ -36,6 +52,7 @@ jobs:
           pr_branch="sync-template/${branch_name}"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+<<<<<<< HEAD
 
           git remote add template https://github.com/ubiquity/ts-template.git
           git fetch template
@@ -71,3 +88,16 @@ jobs:
                       --body "This pull request merges changes from the template repository. There may be conflicts that require manual resolution." \
                       --head "$pr_branch" \
                       --base "$branch_name" || true
+=======
+          git checkout -b "$pr_branch"
+          git clone https://github.com/ubiquity/ts-template
+          for file in $IGNORE_FILES; do
+            rm -rf "ts-template/$file"
+          done
+          cp -rf ts-template/* .
+          rm -rf ts-template/
+          git add .
+          git commit -m "chore: sync template"
+          git push "$original_remote" "$pr_branch"
+          gh pr create --title "Sync branch to template" --body "This pull request merges changes from the template repository." --head "$pr_branch" --base "$branch_name"
+>>>>>>> template/development
