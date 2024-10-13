@@ -1,6 +1,11 @@
 # DevPool Directory UI
 
+<<<<<<< HEAD
 ## Development Setup
+=======
+Hello 
+This template repository includes support for the following:
+>>>>>>> template/development
 
 ```sh
 cp .env.example .env
