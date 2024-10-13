@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { config } from "dotenv";
 import esbuild from "esbuild";
 import { invertColors } from "./plugins/invert-colors";
@@ -12,17 +11,6 @@ const entries = [...typescriptEntries, ...cssEntries, "static/manifest.json", "s
 
 export const esBuildContext: esbuild.BuildOptions = {
   plugins: [invertColors, pwaManifest],
-=======
-import esbuild from "esbuild";
-const typescriptEntries = ["static/main.ts"];
-// const cssEntries = ["static/style.css"];
-const entries = [
-  ...typescriptEntries,
-  //  ...cssEntries
-];
-
-export const esBuildContext: esbuild.BuildOptions = {
->>>>>>> template/main
   sourcemap: true,
   entryPoints: entries,
   bundle: true,
@@ -34,7 +22,6 @@ export const esBuildContext: esbuild.BuildOptions = {
     ".eot": "dataurl",
     ".ttf": "dataurl",
     ".svg": "dataurl",
-<<<<<<< HEAD
     ".json": "dataurl",
   },
   outdir: "static/dist",
@@ -43,15 +30,10 @@ export const esBuildContext: esbuild.BuildOptions = {
     GIT_REVISION: execSync(`git rev-parse --short HEAD`).toString().trim(),
     NODE_ENV: process.env.NODE_ENV || "development",
   }),
-=======
-  },
-  outdir: "static/dist",
->>>>>>> template/main
 };
 
 esbuild
   .build(esBuildContext)
-<<<<<<< HEAD
   .then(() => console.log("\tesbuild complete"))
   .catch(console.error);
 
@@ -65,11 +47,12 @@ function createEnvDefines(environmentVariables: string[], generatedAtBuild: Reco
       throw new Error(`Missing environment variable: ${name}`);
     }
   }
-  for (const key in generatedAtBuild) {
+  // for (const key in generatedAtBuild) {
+  Object.keys(generatedAtBuild).forEach((key) => {
     if (Object.prototype.hasOwnProperty.call(generatedAtBuild, key)) {
       defines[key] = JSON.stringify(generatedAtBuild[key]);
     }
-  }
+  });
   return defines;
 }
 
@@ -95,12 +78,3 @@ export function generateSupabaseStorageKey(): string | null {
 
   return domain.substring(lastSlashIndex + 1);
 }
-=======
-  .then(() => {
-    console.log("\tesbuild complete");
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
->>>>>>> template/main

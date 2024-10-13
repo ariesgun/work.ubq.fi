@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DevPool Directory UI
 
 ## Development Setup
@@ -37,37 +36,3 @@ open http://localhost:8080
 #### Mobile
 
 ![screenshot 2](https://github.com/ubiquity/devpool-directory-ui/assets/4975670/b7861ce7-1f1f-49a9-b8e2-ebb20724ee67)
-=======
-# `@ubiquity/ts-template`
-
-This template repository includes support for the following:
-
-- TypeScript
-- Environment Variables
-- Conventional Commits
-- Automatic deployment to Cloudflare Pages
-
-## Testing
-
-### Cypress
-
-To test with Cypress Studio UI, run
-
-```shell
-yarn cy:open
-```
-
-Otherwise to simply run the tests through the console, run
-
-```shell
-yarn cy:run
-```
-
-### Jest
-
-To start Jest tests, run
-
-```shell
-yarn test
-```
->>>>>>> template/main
