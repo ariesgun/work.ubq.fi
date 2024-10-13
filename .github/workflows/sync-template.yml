@@ -51,7 +51,7 @@ jobs:
             fi
           else
             # If it's the first sync, merge the template
-            git merge template/main --allow-unrelated-histories --no-commit
+            git merge template/main --allow-unrelated-histories --no-commit || true
           fi
 
           # Check if there are any changes
