@@ -5,6 +5,10 @@
   "coveragePathIgnorePatterns": ["node_modules", "mocks"],
   "collectCoverage": true,
   "coverageReporters": ["json", "lcov", "text", "clover", "json-summary"],
+<<<<<<< HEAD
   "reporters": ["default", "jest-junit", "jest-md-dashboard"],
+=======
+  "reporters": ["default", "jest-junit"],
+>>>>>>> template/main
   "coverageDirectory": "coverage"
 }
