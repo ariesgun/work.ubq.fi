@@ -46,14 +46,12 @@ jobs:
 
           if [ -n "$last_sync" ]; then
             # If there's a previous sync, try to cherry-pick new changes
-            if ! git cherry-pick $last_sync..template/main; then
-              # If cherry-pick fails, abort and try a merge instead
-              git cherry-pick --abort
-              git merge template/main --no-commit
-            fi
+            git cherry-pick $last_sync..template/development -m 1 --no-commit > ~/temp.log
+
           else
             # If it's the first sync, merge the template
-            git merge template/main --allow-unrelated-histories --no-commit || true
+            git merge template/main --allow-unrelated-histories --no-commit > ~/temp.log || true
+            cat ~/temp.log
           fi
 
           # Check if there are any changes
@@ -68,6 +66,13 @@ jobs:
           # Push changes and create PR
           git push -f "$original_remote" "$pr_branch"
           gh pr create --title "Sync branch to template (manual resolution required)" \
-                      --body "This pull request merges changes from the template repository. There may be conflicts that require manual resolution." \
-                      --head "$pr_branch" \
-                      --base "$branch_name" || true
+            --body "This pull request merges changes from the template repository.
+          There may be conflicts that require manual resolution.
+          Conflicts:
+          \`\`\`
+          $ git merge template/main --allow-unrelated-histories --no-commit 
+          $(cat ~/temp.log)
+          \`\`\`
+          " \
+            --head "$pr_branch" \
+            --base "$branch_name" || true
