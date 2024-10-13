@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+<<<<<<< HEAD
 yarn commitlint --edit "$1"
 yarn lint-staged
+=======
+yarn commitlint --edit "$1"
+>>>>>>> template/main

@@ -5,5 +5,10 @@
   "singleQuote": false,
   "printWidth": 160,
   "htmlWhitespaceSensitivity": "strict",
+<<<<<<< HEAD
   "plugins": []
+=======
+  "plugins": [],
+  "useTabs": false
+>>>>>>> template/main
 }
